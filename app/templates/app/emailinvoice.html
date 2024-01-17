@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Email Invoice{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div style="background-color: rgb(228, 228, 228);">
+        <div style="margin: 20px; background-color: #fff;">
+    
+    Hi {{ user.name }},
+    Your order with order id: {{orderplaced.id}} has been placed successfully.
+    
+    Your order consists of - 
+    {% for i in orderplaced.productinorder_set.all %}
+    Product:{{i.product}} Quantity:{{i.quantity}} Price:{{i.discounted_price}}
+    {% endfor %}
+    Total:{{orderplaced.total_amount}}
+    
+    Order will reach to you in 3-5 days.
+    
+    We have attached the invoice for your order with this mail.
+    
+    Thanks for trusting us and using our services!
+    
+    Sincerely,
+    E-Shopping Team
+    
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
